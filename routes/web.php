@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ShippingServiceController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\ProductCatalogController;
+use App\Http\Controllers\CartController;
 
 // ---------- Autentikasi ----------
 Route::middleware('guest')->group(function () {
@@ -46,4 +47,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::post('/shipping', [ShippingServiceController::class, 'store'])->name('shipping.store');
     Route::put('/shipping/{shippingService}', [ShippingServiceController::class, 'update'])->name('shipping.update');
     Route::delete('/shipping/{shippingService}', [ShippingServiceController::class, 'destroy'])->name('shipping.destroy');
+
+});
+
+// M5 - Keranjang khusus customer
+Route::middleware(['auth', 'role:customer'])->group(function () {
+    Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/keranjang/{product}', [CartController::class, 'store'])->name('cart.store');
+    Route::patch('/keranjang/{product}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/keranjang/{product}', [CartController::class, 'destroy'])->name('cart.destroy');
 });
