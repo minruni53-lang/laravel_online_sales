@@ -1,0 +1,12 @@
+name: Online Sales Local
+values:
+  - key: ''
+    value: ''
+  - key: base_url
+    value: ''
+  - key: customer_token
+    value: ''
+  - key: admin_token
+    value: ''
+  - key: order_id
+    value: ''

@@ -1,0 +1,7 @@
+$kind: collection
+name: Online Sales REST API
+variables:
+  base_url: ""
+  customer_token: ""
+  admin_token: ""
+  order_id: ""
