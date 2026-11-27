@@ -124,4 +124,15 @@ class OrderController extends Controller
             'data' => new OrderResource($order->fresh()->load(['user', 'items'])), 
         ]); 
     } 
+    public function statistics(): JsonResponse
+{
+    return response()->json([
+        'total_orders' => Order::count(),
+        'pending_orders' => Order::where('status', 'pending')->count(),
+        'completed_orders' => Order::where('status', 'completed')->count(),
+        'cancelled_orders' => Order::where('status', 'cancelled')->count(),
+        'total_revenue' => Order::where('status', 'completed')
+            ->sum('grand_total'),
+    ]);
+}
 } 

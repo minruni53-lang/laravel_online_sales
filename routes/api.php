@@ -33,4 +33,8 @@ Route::prefix('v1')->group(function () {
             Route::patch('/orders/{order}/cancel', [AdminOrderController::class, 'cancel']); 
         }); 
     }); 
+
+    Route::get(
+    '/admin/order-statistics',
+    [AdminOrderController::class, 'statistics']);
 }); 
